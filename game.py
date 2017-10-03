@@ -14,8 +14,7 @@ import random
 
 def greet_player(player_name):
     """welcome the player by name--which comes from user input"""
-    print "Hello {}! Welcome to the number guessing game!".format(get_player_name())
-
+    print "Hello {}! Welcome to the number guessing game!\n\n".format(get_player_name())
 
 def get_player_name():
     while True:
@@ -43,12 +42,16 @@ def guessing_game():
         increase number of guesses
     else:
         congratulate player """
+
+    greet_player(get_player_name())
+
     secret_number = random.randint(1, 100)
     high_limit = 100
     low_limit = 1
     guess = None
 
-    while True:             
+    while True:
+        print "It's lower than {} and higher than {}.\nGood luck!".format(high_limit, low_limit)
         guess = validate_number()
         if guess > secret_number:
             print "Guess is too high"
@@ -61,7 +64,7 @@ def guessing_game():
             break
 
 
-
+guessing_game()
 
 # for when we start troubleshooting for assholes like us who can't follow directions...
 # if guess > high_limit or guess < low_limit:
