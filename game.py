@@ -35,4 +35,16 @@ def validate_number():
         else:
             return int(user_input)
 
-            
+def guessing_game():
+    """# repeat forever:
+    get guess
+    if guess is incorrect:
+        give hint
+        increase number of guesses
+    else:
+        congratulate player """
+    secret_number = random.randint(1, 100)
+    high_limit = 100
+    low_limit = 1
+    while True:
+        guess = 
