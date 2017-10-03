@@ -46,5 +46,23 @@ def guessing_game():
     secret_number = random.randint(1, 100)
     high_limit = 100
     low_limit = 1
-    while True:
-        guess = 
+    guess = None
+
+    while True:             
+        guess = validate_number()
+        if guess > secret_number:
+            print "Guess is too high"
+            high_limit = guess
+        elif guess < secret_number:
+            print "Guess is too low"
+            low_limit = guess
+        else:
+            print "Congrats! {} is the secret number!".format(secret_number)
+            break
+
+
+
+
+# for when we start troubleshooting for assholes like us who can't follow directions...
+# if guess > high_limit or guess < low_limit:
+        #     print "That is not a valid guess."
