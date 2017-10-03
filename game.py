@@ -14,7 +14,7 @@ import random
 
 def greet_player(player_name):
     """welcome the player by name--which comes from user input"""
-    print "Hello {}! Welcome to the number guessing game!\n\n".format(get_player_name())
+    print "Hello {}! Welcome to the number guessing game!\n\n".format(player_name)
 
 def get_player_name():
     while True:
@@ -43,7 +43,8 @@ def guessing_game():
     else:
         congratulate player """
 
-    greet_player(get_player_name())
+    player_name = get_player_name()
+    greet_player(player_name)
 
     secret_number = random.randint(1, 100)
     high_limit = 100
@@ -62,7 +63,6 @@ def guessing_game():
         else:
             print "Congrats! {} is the secret number!".format(secret_number)
             break
-
 
 guessing_game()
 
