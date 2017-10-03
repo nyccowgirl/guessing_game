@@ -29,10 +29,18 @@ def validate_number():
     while True:
         user_input = raw_input("What number do you guess? >")
 
-        if not user_input.isdigit():
-            print "That is not a valid input...try again"
+        try:
+            user_input = int(user_input)
+        except ValueError:
+            print "That is not a number...You know better\nI hope.\n"
+        except IndexError:  # never gonna happen, but for educational purposes, know it exists
+            print "This will never print"
+        except:  # never gonna happen, but for educational purposes, know it exists
+            print "Any other type of exception will trigger this"
         else:
-            return int(user_input)
+            break
+
+    return user_input
 
 def guessing_game():
     """# repeat forever:
@@ -49,20 +57,19 @@ def guessing_game():
     secret_number = random.randint(1, 100)
     high_limit = 100
     low_limit = 1
-    guess = None
     num_guesses = 0
 
     while True:
-        print "It's lower than {} and higher than {}.\nGood luck!".format(high_limit, low_limit)
+        print "It's lower than {} and higher than {}.\nGood luck!\n".format(high_limit, low_limit)
         num_guesses += 1
         guess = validate_number()
         if guess > high_limit or guess < low_limit:
-            print "That guess is outside the parameters...\ndipshit"
+            print "That guess is outside the parameters...\ndipshit\n"
         elif guess > secret_number:
-            print "Guess is too high"
+            print "Guess is too high\n"
             high_limit = guess
         elif guess < secret_number:
-            print "Guess is too low"
+            print "Guess is too low\n"
             low_limit = guess
         else:
             print "Congrats! {} is the secret number!\nIt took you {} guesses".format(secret_number, num_guesses)
@@ -74,6 +81,3 @@ def guessing_game():
 
 guessing_game()
 
-# for when we start troubleshooting for assholes like us who can't follow directions...
-# if guess > high_limit or guess < low_limit:
-        #     print "That is not a valid guess."
