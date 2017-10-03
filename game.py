@@ -50,18 +50,26 @@ def guessing_game():
     high_limit = 100
     low_limit = 1
     guess = None
+    num_guesses = 0
 
     while True:
         print "It's lower than {} and higher than {}.\nGood luck!".format(high_limit, low_limit)
+        num_guesses += 1
         guess = validate_number()
-        if guess > secret_number:
+        if guess > high_limit or guess < low_limit:
+            print "That guess is outside the parameters...\ndipshit"
+        elif guess > secret_number:
             print "Guess is too high"
             high_limit = guess
         elif guess < secret_number:
             print "Guess is too low"
             low_limit = guess
         else:
-            print "Congrats! {} is the secret number!".format(secret_number)
+            print "Congrats! {} is the secret number!\nIt took you {} guesses".format(secret_number, num_guesses)
+            if num_guesses <= 4:
+                print "Wow, that's impressive!"
+            else:
+                print "What a dipshit!"
             break
 
 guessing_game()
