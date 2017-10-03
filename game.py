@@ -25,3 +25,14 @@ def get_player_name():
         else:
             return player_name.title()
 
+def validate_number():
+    """validate user number to ensure it is integer, returns integer"""
+    while True:
+        user_input = raw_input("What number do you guess? >")
+
+        if not user_input.isdigit():
+            print "That is not a valid input...try again"
+        else:
+            return int(user_input)
+
+            
