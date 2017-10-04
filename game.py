@@ -51,8 +51,7 @@ def guessing_game():
     else:
         congratulate player """
 
-    player_name = get_player_name()
-    greet_player(player_name)
+
 
     secret_number = random.randint(1, 100)
     high_limit = 100
@@ -73,11 +72,40 @@ def guessing_game():
             low_limit = guess
         else:
             print "Congrats! {} is the secret number!\nIt took you {} guesses".format(secret_number, num_guesses)
+            #reconcile the end of game
             if num_guesses <= 4:
                 print "Wow, that's impressive!"
             else:
                 print "What a dipshit!"
             break
 
-guessing_game()
+# lowest score = []
 
+
+
+def repeat_game():
+    """asks user, want to play again, returns true or false"""
+
+    while True:
+        answer = raw_input("Wanna play again? Y/N >")
+        if answer.upper() == "Y":
+            print "Great! Let's see if you can best your score."
+            return True
+        elif answer.upper() == "N":
+            print "OK. Have a nice life."
+            return False
+        else:
+            print "Can you read? Come on...Follow the instructions."
+
+def repl():
+    """get player name, greets them """
+
+    player_name = get_player_name()
+    greet_player(player_name)
+    player_wants_to_play = True
+
+    while player_wants_to_play == True:
+        guessing_game()
+        player_wants_to_play = repeat_game()
+
+repl()
