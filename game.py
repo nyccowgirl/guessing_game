@@ -41,8 +41,8 @@ def validate_number():
             break
 
     return user_input
-
-def guessing_game():
+best_score = 101
+def guessing_game(best_score):
     """# repeat forever:
     get guess
     if guess is incorrect:
@@ -57,8 +57,10 @@ def guessing_game():
     high_limit = 100
     low_limit = 1
     num_guesses = 0
+    # best_score = None
 
     while True:
+        
         print "It's lower than {} and higher than {}.\nGood luck!\n".format(high_limit, low_limit)
         num_guesses += 1
         guess = validate_number()
@@ -73,13 +75,26 @@ def guessing_game():
         else:
             print "Congrats! {} is the secret number!\nIt took you {} guesses".format(secret_number, num_guesses)
             #reconcile the end of game
-            if num_guesses <= 4:
-                print "Wow, that's impressive!"
-            else:
-                print "What a dipshit!"
+            print "Your best score before the fn is", best_score
+            best_score = find_best_score(num_guesses, best_score)
+            return best_score
+            print "best score after fn", best_score
+            # if num_guesses <= 4:
+            #     print "Wow, that's impressive!"
+            # else:
+            #     print "What a dipshit!"
             break
 
 # lowest score = []
+def find_best_score(number_of_guesses, previous_best_score):
+    """takes number of guesses, returns that number if it is lower than
+    previous number"""
+    if previous_best_score == None:
+        return number_of_guesses
+    if number_of_guesses < previous_best_score:
+        return number_of_guesses
+    else:
+        return previous_best_score
 
 
 
@@ -103,9 +118,9 @@ def repl():
     player_name = get_player_name()
     greet_player(player_name)
     player_wants_to_play = True
-
+    best_score = None
     while player_wants_to_play == True:
-        guessing_game()
+        guessing_game(best_score)
         player_wants_to_play = repeat_game()
 
 repl()
